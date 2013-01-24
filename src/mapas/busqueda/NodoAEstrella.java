@@ -13,30 +13,30 @@ import java.util.LinkedList;
 public class NodoAEstrella extends Nodo{
     
     private Operador operador;
-    private double costeCamino;
-    private double costeEstimado;
+    private double g_costeCamino;
+    private double h_estimacion;
     private LinkedList<NodoAEstrella> descendientes;
     
     
-    public NodoAEstrella( Estado estado , Nodo padre , Operador operador , double costeEstimado ){
+    public NodoAEstrella( Estado estado , Nodo padre , Operador operador , double h_costeEstimado ){
         super( estado , padre );
         this.operador = operador;
-        this.costeEstimado = costeEstimado;
+        this.h_estimacion = h_costeEstimado;
         this.descendientes = new LinkedList<NodoAEstrella>();
         
         if( padre == null || operador == null  ){
-            this.costeCamino = 0;
+            this.g_costeCamino = 0;
         }else{
-            this.costeCamino = ( (NodoIDA) padre ).getCosteCamino() + operador.getCoste() ;
+            this.g_costeCamino = ( (NodoIDA) padre ).getCosteCamino() + operador.getCoste() ;
         }
     }
 
     public double getCosteCamino() {
-        return costeCamino;
+        return g_costeCamino;
     }
 
     public void setCosteCamino(double costeCamino) {
-        this.costeCamino = costeCamino;
+        this.g_costeCamino = costeCamino;
     }
 
     public Operador getOperador() {
@@ -47,12 +47,16 @@ public class NodoAEstrella extends Nodo{
         this.operador = operador;
     }
 
-    public double getCosteEstimado() {
-        return costeEstimado;
+    public double getEstimacion() {
+        return h_estimacion;
     }
 
-    public void setCosteEstimado(double costeEstimado) {
-        this.costeEstimado = costeEstimado;
+    public void setEstimacion(double costeEstimado) {
+        this.h_estimacion = costeEstimado;
+    }
+    
+    public double getCosteEstimado(){
+        return this.h_estimacion + this.g_costeCamino;
     }
 
     public LinkedList<NodoAEstrella> getDescendientes() {
@@ -66,9 +70,9 @@ public class NodoAEstrella extends Nodo{
     public void propagarCosteCamino(){
         
         if( this.getPadre() == null || operador == null  ){
-            this.costeCamino = 0;
+            this.g_costeCamino = 0;
         }else{
-            this.costeCamino = ( (NodoIDA) this.getPadre() ).getCosteCamino() + operador.getCoste() ;
+            this.g_costeCamino = ( (NodoIDA) this.getPadre() ).getCosteCamino() + operador.getCoste() ;
         }
         
         for( NodoAEstrella hijo : descendientes ){

@@ -48,8 +48,7 @@ public class BusquedaAEstrella implements Busqueda{
                            NodoAEstrella peorNodo = listaAbiertos.get(indiceAbierto);
                            ( (NodoAEstrella) listaAbiertos.get(indiceAbierto).getPadre() ).descolgarHijo( nodoSucesor );
                            listaAbiertos.remove(peorNodo);
-                           listaAbiertos.add( nodoSucesor );
-                            
+                           this.insertaOrdenadoAbiertos(nodoSucesor);
                         }
                     }
                     
@@ -65,8 +64,7 @@ public class BusquedaAEstrella implements Busqueda{
                             
                             listaCerrados.remove( peorNodo );
                             nodoSucesor.propagarCosteCamino();
-                            listaCerrados.add(nodoSucesor);
-                            
+                            this.insertaOrdenadoAbiertos(nodoSucesor);
                         }
                     }
                     
@@ -74,7 +72,6 @@ public class BusquedaAEstrella implements Busqueda{
                         listaAbiertos.add( nodoSucesor );
                     }
                 }//end for
-                reordenarAbiertos();
             }
         }
         
@@ -91,7 +88,26 @@ public class BusquedaAEstrella implements Busqueda{
     
     
     
-    private void reordenarAbiertos(){
+    private void insertaOrdenadoAbiertos( NodoAEstrella nodo ){
+  
+        if( listaAbiertos.isEmpty() ){
+            this.listaAbiertos.add( nodo );
+        }else{
+            
+            boolean insertado = false;
+            int indice = 0 ;
+            
+            while( ! insertado && indice < listaAbiertos.size() ){
+                if( nodo.getCosteEstimado() >  listaAbiertos.get(indice).getCosteEstimado() ){
+                    indice++;
+                }else{
+                    listaAbiertos.addLast( nodo );
+                    insertado = true;
+                }
+            }
+        }
+        
+        
         
     }
     
