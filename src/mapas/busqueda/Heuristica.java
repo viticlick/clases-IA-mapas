@@ -10,5 +10,5 @@ package mapas.busqueda;
  */
 public interface Heuristica {
  
-    public double getHeuristica( Estado estado );
+    public double getValor( Estado estado );
 }

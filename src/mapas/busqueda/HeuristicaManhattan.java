@@ -10,7 +10,7 @@ import mapas.modelo.Posicion;
  *
  * @author zarapalleto
  */
-public class HeuristicaManhattan {
+public class HeuristicaManhattan implements Heuristica{
 
     private int posicionObjetivoY;
     private int posicionObjetivoX;
@@ -100,5 +100,6 @@ public class HeuristicaManhattan {
 
     public int getPosicionObjetivoY() {
         return posicionObjetivoY;
-    }   
+    }
+
 }
