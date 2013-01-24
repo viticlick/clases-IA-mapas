@@ -44,18 +44,29 @@ public class BusquedaAEstrella implements Busqueda{
                     if( listaAbiertos.contains( nodoSucesor ) ){
                         int indiceAbierto = listaAbiertos.indexOf( nodoSucesor );
                         if( nodoSucesor.getCosteCamino() < listaAbiertos.get(indiceAbierto).getCosteCamino() ){
-                            /**
-                             * 
-                             */
+                            
+                           NodoAEstrella peorNodo = listaAbiertos.get(indiceAbierto);
+                           ( (NodoAEstrella) listaAbiertos.get(indiceAbierto).getPadre() ).descolgarHijo( nodoSucesor );
+                           listaAbiertos.remove(peorNodo);
+                           listaAbiertos.add( nodoSucesor );
+                            
                         }
                     }
                     
                     if( listaCerrados.contains( nodoSucesor ) ){
                         int indiceCerrado = listaCerrados.indexOf( nodoSucesor );
-                        if( nodoSucesor.getCosteCamino() < listaAbiertos.get(indiceCerrado).getCosteCamino() ){
-                            /**
-                             * 
-                             */
+                        if( nodoSucesor.getCosteCamino() < listaCerrados.get(indiceCerrado).getCosteCamino() ){
+                            
+                            NodoAEstrella peorNodo = listaCerrados.get(indiceCerrado);
+                            
+                            nodoSucesor.setDescendientes( peorNodo.getDescendientes() );
+                            
+                            ( (NodoAEstrella) listaCerrados.get(indiceCerrado).getPadre() ).descolgarHijo(nodoSucesor);
+                            
+                            listaCerrados.remove( peorNodo );
+                            nodoSucesor.propagarCosteCamino();
+                            listaCerrados.add(nodoSucesor);
+                            
                         }
                     }
                     

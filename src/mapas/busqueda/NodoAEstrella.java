@@ -76,8 +76,13 @@ public class NodoAEstrella extends Nodo{
         }
     }
     
-    public void descolgarHijo( ){
-        
+    public void descolgarHijo( NodoAEstrella nodo ){
+        this.descendientes.remove(nodo);
+    }
+    
+    public void sustituirHijo( NodoAEstrella antiguo , NodoAEstrella nuevo ){
+        this.descendientes.remove( antiguo );
+        this.descendientes.add(nuevo);
     }
     
     @Override
