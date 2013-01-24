@@ -6,6 +6,7 @@
 package mapas.busqueda;
 
 import java.util.List;
+import mapas.modelo.Posicion;
 
 /**
  * Interfaz genérico para los estados del espacio de estados
@@ -42,4 +43,6 @@ public interface Estado {
     
     @Override
     public String toString();
+    
+    public Posicion getPosicion();
 }
