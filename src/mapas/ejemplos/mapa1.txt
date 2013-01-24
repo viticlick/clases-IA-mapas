@@ -1,0 +1,8 @@
+filas=4
+columnas=10
+gasolinera=1,4
+gasolinera=2,4
+4321111#11
+3211111#11
+2111121#11
+1111232111
