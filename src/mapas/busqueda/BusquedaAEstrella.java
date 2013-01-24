@@ -69,7 +69,7 @@ public class BusquedaAEstrella implements Busqueda{
                     }
                     
                     if( ! listaAbiertos.contains( nodoSucesor ) && ! listaCerrados.contains( nodoSucesor )){
-                        listaAbiertos.add( nodoSucesor );
+                        this.insertaOrdenadoAbiertos(nodoSucesor);
                     }
                 }//end for
             }
