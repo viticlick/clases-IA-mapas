@@ -7,12 +7,13 @@ package mapas;
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
-import mapas.busqueda.BusquedaAnchura;
-import mapas.modelo.OperadorMapaMovimiento;
+import mapas.busqueda.BusquedaIDA;
+import mapas.busqueda.HeuristicaManhattan;
 import mapas.busqueda.Operador;
 import mapas.busqueda.Problema;
 import mapas.modelo.EstadoMapa;
 import mapas.modelo.Mapa;
+import mapas.modelo.OperadorMapaMovimiento;
 import mapas.modelo.Posicion;
 
 /**
@@ -50,13 +51,13 @@ public class Main {
 
         Problema problema = new Problema();
         problema.setInicial(new EstadoMapa(posicionInicial, gasolinaInicial, capacidadDeposito, posicionFinal));
-        problema.setBuscador(new BusquedaAnchura()); // Busqueda en anchura
-        // problema.setBuscador(new BusquedaProfundidad()); // Busqueda en profundidad
-
+        //problema.setBuscador(new BusquedaAnchura()); // Busqueda en anchura
+        //problema.setBuscador(new BusquedaProfundidad()); // Busqueda en profundidad
+        problema.setBuscador(new BusquedaIDA( new HeuristicaManhattan(posicionFinal) ) );
 
         System.out.println("SOLUCION:");
         List<Operador> operadoresSolucion = problema.obtenerSolucion();
-        if (operadoresSolucion != null) {
+        if ( operadoresSolucion != null ) {
             List<Posicion> ruta = new LinkedList<Posicion>();
             Posicion posicionActual = posicionInicial;
             ruta.add(posicionActual);
