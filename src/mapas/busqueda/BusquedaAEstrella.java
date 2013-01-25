@@ -104,9 +104,13 @@ public class BusquedaAEstrella implements Busqueda{
                 if( nodo.getCosteEstimado() >  listaAbiertos.get(indice).getCosteEstimado() ){
                     indice++;
                 }else{
-                    listaAbiertos.addLast( nodo );
+                    listaAbiertos.add(indice, nodo);
                     insertado = true;
                 }
+            }
+            
+            if( ! insertado ){
+                listaAbiertos.addLast(nodo);
             }
         }
         
