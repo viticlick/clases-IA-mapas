@@ -7,10 +7,7 @@ package mapas;
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
-import mapas.busqueda.BusquedaIDA;
-import mapas.busqueda.HeuristicaManhattan;
-import mapas.busqueda.Operador;
-import mapas.busqueda.Problema;
+import mapas.busqueda.*;
 import mapas.modelo.EstadoMapa;
 import mapas.modelo.Mapa;
 import mapas.modelo.OperadorMapaMovimiento;
@@ -53,8 +50,9 @@ public class Main {
         problema.setInicial(new EstadoMapa(posicionInicial, gasolinaInicial, capacidadDeposito, posicionFinal));
         //problema.setBuscador(new BusquedaAnchura()); // Busqueda en anchura
         //problema.setBuscador(new BusquedaProfundidad()); // Busqueda en profundidad
-        problema.setBuscador(new BusquedaIDA( new HeuristicaManhattan(posicionFinal) ) );
-
+        //problema.setBuscador(new BusquedaIDA( new HeuristicaManhattan(posicionFinal) ) );
+        problema.setBuscador( new BusquedaAEstrella( new HeuristicaManhattan( posicionFinal ) ) );
+        
         System.out.println("SOLUCION:");
         List<Operador> operadoresSolucion = problema.obtenerSolucion();
         if ( operadoresSolucion != null ) {

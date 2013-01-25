@@ -19,6 +19,8 @@ public class BusquedaAEstrella implements Busqueda{
     
     public BusquedaAEstrella( Heuristica heuristica ){
         this.heuristica = heuristica;
+        this.listaAbiertos = new LinkedList<NodoAEstrella>();
+        this.listaCerrados = new LinkedList<NodoAEstrella>();
     }
     
     
@@ -29,6 +31,7 @@ public class BusquedaAEstrella implements Busqueda{
         listaAbiertos.clear();
         listaCerrados.clear();
         boolean resuelto = false;
+        listaAbiertos.add(nodoInicial);
         
         while( ! listaAbiertos.isEmpty() && ! resuelto ){
             nodoActual = listaAbiertos.pollFirst();

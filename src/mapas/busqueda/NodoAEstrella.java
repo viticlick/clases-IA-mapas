@@ -27,7 +27,7 @@ public class NodoAEstrella extends Nodo{
         if( padre == null || operador == null  ){
             this.g_costeCamino = 0;
         }else{
-            this.g_costeCamino = ( (NodoIDA) padre ).getCosteCamino() + operador.getCoste() ;
+            this.g_costeCamino = ( (NodoAEstrella) padre ).getCosteCamino() + operador.getCoste() ;
         }
     }
 
@@ -72,7 +72,7 @@ public class NodoAEstrella extends Nodo{
         if( this.getPadre() == null || operador == null  ){
             this.g_costeCamino = 0;
         }else{
-            this.g_costeCamino = ( (NodoIDA) this.getPadre() ).getCosteCamino() + operador.getCoste() ;
+            this.g_costeCamino = ( (NodoAEstrella) this.getPadre() ).getCosteCamino() + operador.getCoste() ;
         }
         
         for( NodoAEstrella hijo : descendientes ){
