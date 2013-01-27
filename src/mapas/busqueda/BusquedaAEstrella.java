@@ -23,7 +23,11 @@ public class BusquedaAEstrella implements Busqueda{
         this.listaCerrados = new LinkedList<NodoAEstrella>();
     }
     
-    
+    /**
+     * Realiza la búsqueda de la solución según el algoritmo
+     * @param inicial Estado de partida
+     * @return Lista de operadores aplicables al estado inicial para llegar a la solución
+     */
     public List<Operador> buscarSolucion(Estado inicial) {
     
         NodoAEstrella nodoInicial = new NodoAEstrella( inicial , null , null , heuristica.getValor(inicial));
@@ -126,10 +130,7 @@ public class BusquedaAEstrella implements Busqueda{
             if( ! insertado ){
                 listaAbiertos.addLast(nodo); //Inserta el elemento al final de la lista
             }
-        }
-        
-        
-        
+        }     
     }
     
 }

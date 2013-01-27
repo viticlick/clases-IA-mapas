@@ -67,6 +67,9 @@ public class NodoAEstrella extends Nodo{
         this.descendientes = descendientes;
     }
     
+    /**
+     * Recalcula el valor de g(e) del nodo actual y lo propaga a los nodos descendientes.
+     */
     public void propagarCosteCamino(){
         
         if( this.getPadre() == null || operador == null  ){
@@ -80,10 +83,20 @@ public class NodoAEstrella extends Nodo{
         }
     }
     
+    /**
+     * Elimina un nodo hijo concreto de la lista de descendientes
+     * @param nodo Nodo que se desea eliminar de la lista de descendientes.
+     */
     public void descolgarHijo( NodoAEstrella nodo ){
         this.descendientes.remove(nodo);
     }
     
+    /**
+     * Sustituye un nodo perteneciente a la lista de descendientes del nodo actual
+     * por un nodo nuevo
+     * @param antiguo Nodo que será eliminado de la lista de hijos
+     * @param nuevo Nodo que se añade a la lista de nodos hijo
+     */
     public void sustituirHijo( NodoAEstrella antiguo , NodoAEstrella nuevo ){
         this.descendientes.remove( antiguo );
         this.descendientes.add(nuevo);
